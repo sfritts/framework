@@ -2,4 +2,4 @@
 
 require "Code/autoloader.php";
 
-$class = new Classes\SomeClass();
+var_dump($_SERVER['REQUEST_URI']);
