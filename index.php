@@ -2,4 +2,4 @@
 
 require "Code/autoloader.php";
 
-var_dump($_SERVER['REQUEST_URI']);
+$parser = new \Classes\ParseUri();
