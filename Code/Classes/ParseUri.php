@@ -4,7 +4,7 @@ namespace Classes;
 
 /**
  *
- * @author Stewart Fritts <sfritts@spectrumvoip.com>
+ * @author Stewart Fritts
  */
 class ParseUri {
 
@@ -27,8 +27,21 @@ class ParseUri {
         // pop the leading forward slash off
         $this->uri = substr(strtok($_SERVER['REQUEST_URI'], "?"), 1);
         
+        $pieces = explode("/", $this->uri);
         
-        var_dump($this->uri);
+        foreach($this->excludedDirectories as $directory){
+            unset($pieces[array_search($directory, $pieces)]);
+        }
+        
+        $pieces = array_values($pieces);
+        /**
+         * 0 = controller
+         * 1 = method
+         */
+        $controller = "\Controllers\\" . $pieces[0];
+        $method = isset($pieces[1]) ? $pieces[1] : FALSE;
+        
+        $loading = new $controller($pieces[0], $method);
     }
 
 }
