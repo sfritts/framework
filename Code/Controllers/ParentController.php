@@ -17,9 +17,18 @@ abstract class ParentController {
         }
     }
 
+    /**
+     * @todo Improve error handling.
+     */
     public function callMethod() {
-        call_user_func(array(get_class($this), $this->methodName));
+        try{
+            call_user_func(array(get_class($this), $this->methodName));
+        } catch (\Exception $ex) {
+            error_log($ex->getMessage());
+            die("Error Loading Page");
+        }
+        
     }
 
-    abstract protected function defaultMethod();
+    abstract protected static function defaultMethod();
 }

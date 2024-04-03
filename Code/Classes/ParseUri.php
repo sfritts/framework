@@ -11,7 +11,7 @@ class ParseUri {
     //put your code here
 
     protected $uri;
-    protected $defaultController = "main";
+    protected $defaultController = "home";
     // 
 
     /**
@@ -33,15 +33,15 @@ class ParseUri {
             unset($pieces[array_search($directory, $pieces)]);
         }
         
-        $pieces = array_values($pieces);
         /**
          * 0 = controller
          * 1 = method
          */
-        $controller = "\Controllers\\" . $pieces[0];
-        $method = isset($pieces[1]) ? $pieces[1] : FALSE;
-        
-        $loading = new $controller($pieces[0], $method);
+        $pieces         = array_values($pieces);
+        $controllerName = (isset($pieces[0]) ? $pieces[0] : $this->defaultController);
+        $controller     = "\Controllers\\" . $controllerName;
+        $method         = (isset($pieces[1]) ? $pieces[1] : FALSE);
+        $loading        = new $controller($controllerName, $method);
     }
 
 }

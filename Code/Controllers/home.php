@@ -12,10 +12,10 @@ class home extends ParentController {
     public function __construct($controllerName, $method) {
         parent::__construct($controllerName, $method);
         
-        parent::callMethod();
+        $this->callMethod();
     }
     
-    public function defaultMethod() {
+    public static function defaultMethod() {
         
         $loader = new \Twig\Loader\FilesystemLoader(["Code/Templates", "Code/Templates/home"]);
         $twig = new \Twig\Environment($loader);
