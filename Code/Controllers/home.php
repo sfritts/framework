@@ -20,6 +20,7 @@ class home extends ParentController {
         $loader = new \Twig\Loader\FilesystemLoader(["Code/Templates", "Code/Templates/home"]);
         $twig = new \Twig\Environment($loader);
         
+        
         echo $twig->render("home.html.twig", []);
     }
 }
